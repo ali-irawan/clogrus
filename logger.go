@@ -117,3 +117,20 @@ func (l *ConsoleLogger) Errorf(format string, args ...interface{}) {
 		WithField("trace", fmt.Sprintf("%s:%d", file, line)).
 		Errorf(format, args...)
 }
+
+func (l *ConsoleLogger) Fatal(msg string, err error) {
+	// Trace error
+	file, line := clog.Trace(SkipTrace)
+	l.addFields().
+		WithField("trace", fmt.Sprintf("%s:%d", file, line)).
+		WithField("error_msg", err).
+		Fatal(msg)
+}
+
+func (l *ConsoleLogger) Fatalf(format string, args ...interface{}) {
+	// Trace error
+	file, line := clog.Trace(SkipTrace)
+	l.addFields().
+		WithField("trace", fmt.Sprintf("%s:%d", file, line)).
+		Fatalf(format, args...)
+}
