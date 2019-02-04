@@ -2,12 +2,10 @@ package clogrus
 
 import (
 	"fmt"
-	"os"
-	"strconv"
-	"time"
-
 	"github.com/nbs-go/clog"
 	"github.com/sirupsen/logrus"
+	"os"
+	"strconv"
 )
 
 // constants
@@ -76,8 +74,7 @@ type ConsoleLogger struct {
 
 func (l *ConsoleLogger) addFields() *logrus.Entry {
 	return l.writer.
-		WithField("hostname", l.hostname).
-		WithField("t", time.Now().UTC().Format(time.RFC3339))
+		WithField("hostname", l.hostname)
 }
 
 func (l *ConsoleLogger) Debug(msg string) {
